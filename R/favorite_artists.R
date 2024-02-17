@@ -8,7 +8,7 @@
 #' @export
 #'
 #' @examples
-#' my_playlist <- readr::read_csv('my_playlist.csv')
+#' my_playlist <- readr::read_csv('../randb.csv')
 #' favorite_artists(spotify_data = my_playlist)
 #' favorite_artists(my_playlist, count = 5L)
 #'
