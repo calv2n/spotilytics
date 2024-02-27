@@ -22,6 +22,7 @@ A data.frame ordering the amount of times each artist appears in a data.frame
 Count the number of artists in your playlist
 }
 \examples{
-a = "WIP"
+data('rb')
+favorite_artists(rb, see_all = TRUE)
 
 }

@@ -9,7 +9,8 @@
 #' @export
 #'
 #' @examples
-#' a = "WIP"
+#' data('rb')
+#' favorite_artists(rb, see_all = TRUE)
 #'
 favorite_artists <- function(spotify_data, count = 6L, see_all = FALSE, ascending = FALSE) {
   if (!is.data.frame(spotify_data)) {
