@@ -1,53 +1,97 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# spotilytics
-
-<!-- badges: start -->
-<!-- badges: end -->
-
-The goal of spotilytics is to give Spotify users informational data
-analytics.
-
-## Installation
-
-You can install the development version of spotilytics like so:
-
-`devtools::install_github('')`
+# Spotilytics
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+library(spotilytics)
+data('rb')
 ```
 
-## Example
+### How to get properly formatted data for spotilytics:
 
-This is a basic example which shows you how to solve a common problem:
+1)  Visit [Exportify](https://exportify.net/).
+
+2)  Log in with your Spotify SSO.
+
+3)  Choose your favorite playlist and click download .csv.
+
+4)  Load your playlist data into RStudio.
+
+### How to use `favorite_artists()` Function:
+
+After loading in playlist data from Exportify, you may see your top 6
+artists within this playlist like so:
 
 ``` r
-# library(spotilytics)
-## basic example code
+favorite_artists(rb)
+#> # A tibble: 6 × 2
+#>   artist         num_appearances
+#>   <chr>                    <int>
+#> 1 Frank Ocean                  8
+#> 2 SZA                          5
+#> 3 Sampha                       5
+#> 4 Anderson .Paak               4
+#> 5 Daniel Caesar                3
+#> 6 Giveon                       3
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+If you would like to see your “least favorite” artists (or at least the
+ones who appear the least in your playlist), change the `ascending`
+argument to `TRUE`.
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+favorite_artists(rb, ascending=TRUE)
+#> # A tibble: 6 × 2
+#>   artist          num_appearances
+#>   <chr>                     <int>
+#> 1 A$AP Rocky                    1
+#> 2 André 3000                    1
+#> 3 Brent Faiyaz                  1
+#> 4 Bruno Mars                    1
+#> 5 Drake                         1
+#> 6 Earl Sweatshirt               1
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
+If you want to see more of your favorite artists, use the `count=`
+argument
 
-You can also embed plots, for example:
+``` r
+favorite_artists(rb, count=10)
+#> # A tibble: 10 × 2
+#>    artist             num_appearances
+#>    <chr>                        <int>
+#>  1 Frank Ocean                      8
+#>  2 SZA                              5
+#>  3 Sampha                           5
+#>  4 Anderson .Paak                   4
+#>  5 Daniel Caesar                    3
+#>  6 Giveon                           3
+#>  7 Kendrick Lamar                   3
+#>  8 Mac Miller                       3
+#>  9 Tyler, The Creator               3
+#> 10 Childish Gambino                 2
+```
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
+To just return the whole dataframe, set the `see_all` argument to
+`TRUE`.
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+``` r
+all_artists <- favorite_artists(rb, see_all=TRUE)
+
+all_artists
+#> # A tibble: 26 × 2
+#>    artist             num_appearances
+#>    <chr>                        <int>
+#>  1 Frank Ocean                      8
+#>  2 SZA                              5
+#>  3 Sampha                           5
+#>  4 Anderson .Paak                   4
+#>  5 Daniel Caesar                    3
+#>  6 Giveon                           3
+#>  7 Kendrick Lamar                   3
+#>  8 Mac Miller                       3
+#>  9 Tyler, The Creator               3
+#> 10 Childish Gambino                 2
+#> # ℹ 16 more rows
+```

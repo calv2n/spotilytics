@@ -40,9 +40,6 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="articles/spotilytics.html">Get started</a>
-</li>
-<li>
   <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -70,43 +67,84 @@
 
       </header><div class="row">
   <div class="contents col-md-9">
-<div class="section level1">
-<div class="page-header"><h1 id="spotilytics">spotilytics<a class="anchor" aria-label="anchor" href="#spotilytics"></a>
-</h1></div>
-<!-- badges: start -->
-<!-- badges: end -->
-<p>The goal of spotilytics is to give Spotify users informational data analytics.</p>
-<div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h2>
-<p>You can install the development version of spotilytics like so:</p>
-<p><code>devtools::install_github('')</code></p>
+
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">spotilytics</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">'rb'</span><span class="op">)</span></span></code></pre></div>
+<div class="section level3">
+<h3 id="how-to-get-properly-formatted-data-for-spotilytics">How to get properly formatted data for spotilytics:<a class="anchor" aria-label="anchor" href="#how-to-get-properly-formatted-data-for-spotilytics"></a>
+</h3>
+<ol style="list-style-type: decimal">
+<li><p>Visit <a href="https://exportify.net/" class="external-link">Exportify</a>.</p></li>
+<li><p>Log in with your Spotify SSO.</p></li>
+<li><p>Choose your favorite playlist and click download .csv.</p></li>
+<li><p>Load your playlist data into RStudio.</p></li>
+</ol>
 </div>
-<div class="section level2">
-<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
-</h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
+<div class="section level3">
+<h3 id="how-to-use-favorite_artists-function">How to use <code>favorite_artists()</code> Function:<a class="anchor" aria-label="anchor" href="#how-to-use-favorite_artists-function"></a>
+</h3>
+<p>After loading in playlist data from Exportify, you may see your top 6 artists within this playlist like so:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># library(spotilytics)</span></span>
-<span><span class="co">## basic example code</span></span></code></pre></div>
-<p>What is special about using <code>README.Rmd</code> instead of just <code>README.md</code>? You can include R chunks like so:</p>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/favorite_artists.html">favorite_artists</a></span><span class="op">(</span><span class="va">rb</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 2</span></span>
+<span><span class="co">#&gt;   artist         num_appearances</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                    &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 Frank Ocean                  8</span></span>
+<span><span class="co">#&gt; 2 SZA                          5</span></span>
+<span><span class="co">#&gt; 3 Sampha                       5</span></span>
+<span><span class="co">#&gt; 4 Anderson .Paak               4</span></span>
+<span><span class="co">#&gt; 5 Daniel Caesar                3</span></span>
+<span><span class="co">#&gt; 6 Giveon                       3</span></span></code></pre></div>
+<p>If you would like to see your “least favorite” artists (or at least the ones who appear the least in your playlist), change the <code>ascending</code> argument to <code>TRUE</code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cars</span><span class="op">)</span></span>
-<span><span class="co">#&gt;      speed           dist       </span></span>
-<span><span class="co">#&gt;  Min.   : 4.0   Min.   :  2.00  </span></span>
-<span><span class="co">#&gt;  1st Qu.:12.0   1st Qu.: 26.00  </span></span>
-<span><span class="co">#&gt;  Median :15.0   Median : 36.00  </span></span>
-<span><span class="co">#&gt;  Mean   :15.4   Mean   : 42.98  </span></span>
-<span><span class="co">#&gt;  3rd Qu.:19.0   3rd Qu.: 56.00  </span></span>
-<span><span class="co">#&gt;  Max.   :25.0   Max.   :120.00</span></span></code></pre></div>
-<p>You’ll still need to render <code>README.Rmd</code> regularly, to keep <code>README.md</code> up-to-date. <code><a href="https://devtools.r-lib.org/reference/build_rmd.html" class="external-link">devtools::build_readme()</a></code> is handy for this.</p>
-<p>You can also embed plots, for example:</p>
-<p><img src="reference/figures/README-pressure-1.png" width="100%"></p>
-<p>In that case, don’t forget to commit and push the resulting figure files, so they display on GitHub and CRAN.</p>
+<code class="sourceCode R"><span><span class="fu"><a href="reference/favorite_artists.html">favorite_artists</a></span><span class="op">(</span><span class="va">rb</span>, ascending<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 6 × 2</span></span>
+<span><span class="co">#&gt;   artist          num_appearances</span></span>
+<span><span class="co">#&gt;   &lt;chr&gt;                     &lt;int&gt;</span></span>
+<span><span class="co">#&gt; 1 A$AP Rocky                    1</span></span>
+<span><span class="co">#&gt; 2 André 3000                    1</span></span>
+<span><span class="co">#&gt; 3 Brent Faiyaz                  1</span></span>
+<span><span class="co">#&gt; 4 Bruno Mars                    1</span></span>
+<span><span class="co">#&gt; 5 Drake                         1</span></span>
+<span><span class="co">#&gt; 6 Earl Sweatshirt               1</span></span></code></pre></div>
+<p>If you want to see more of your favorite artists, use the <code>count=</code> argument</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/favorite_artists.html">favorite_artists</a></span><span class="op">(</span><span class="va">rb</span>, count<span class="op">=</span><span class="fl">10</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 10 × 2</span></span>
+<span><span class="co">#&gt;    artist             num_appearances</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;                        &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1 Frank Ocean                      8</span></span>
+<span><span class="co">#&gt;  2 SZA                              5</span></span>
+<span><span class="co">#&gt;  3 Sampha                           5</span></span>
+<span><span class="co">#&gt;  4 Anderson .Paak                   4</span></span>
+<span><span class="co">#&gt;  5 Daniel Caesar                    3</span></span>
+<span><span class="co">#&gt;  6 Giveon                           3</span></span>
+<span><span class="co">#&gt;  7 Kendrick Lamar                   3</span></span>
+<span><span class="co">#&gt;  8 Mac Miller                       3</span></span>
+<span><span class="co">#&gt;  9 Tyler, The Creator               3</span></span>
+<span><span class="co">#&gt; 10 Childish Gambino                 2</span></span></code></pre></div>
+<p>To just return the whole dataframe, set the <code>see_all</code> argument to <code>TRUE</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">all_artists</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/favorite_artists.html">favorite_artists</a></span><span class="op">(</span><span class="va">rb</span>, see_all<span class="op">=</span><span class="cn">TRUE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">all_artists</span></span>
+<span><span class="co">#&gt; # A tibble: 26 × 2</span></span>
+<span><span class="co">#&gt;    artist             num_appearances</span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;                        &lt;int&gt;</span></span>
+<span><span class="co">#&gt;  1 Frank Ocean                      8</span></span>
+<span><span class="co">#&gt;  2 SZA                              5</span></span>
+<span><span class="co">#&gt;  3 Sampha                           5</span></span>
+<span><span class="co">#&gt;  4 Anderson .Paak                   4</span></span>
+<span><span class="co">#&gt;  5 Daniel Caesar                    3</span></span>
+<span><span class="co">#&gt;  6 Giveon                           3</span></span>
+<span><span class="co">#&gt;  7 Kendrick Lamar                   3</span></span>
+<span><span class="co">#&gt;  8 Mac Miller                       3</span></span>
+<span><span class="co">#&gt;  9 Tyler, The Creator               3</span></span>
+<span><span class="co">#&gt; 10 Childish Gambino                 2</span></span>
+<span><span class="co">#&gt; # ℹ 16 more rows</span></span></code></pre></div>
 </div>
-</div>
+
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
