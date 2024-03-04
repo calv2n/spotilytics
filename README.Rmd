@@ -15,45 +15,10 @@ knitr::opts_chunk$set(
 
 # Spotilytics
 
+Spotilytics is an R package designed for data analysis of Spotify Playlists
+
+## Installing Spotilytics
+
 ```{r setup}
-library(spotilytics)
-data('rb')
+# devtools::install_github('calv2n/spotilytics')
 ```
-
-### How to get properly formatted data for spotilytics:
-
-1) Visit [Exportify](https://exportify.net/).
-
-2) Log in with your Spotify SSO. 
-
-3) Choose your favorite playlist and click download .csv.
-
-4) Load your playlist data into RStudio.
-
-### How to use `favorite_artists()` Function:
-
-After loading in playlist data from Exportify, you may see your top 6 artists within this playlist like so:
-
-```{r}
-favorite_artists(rb)
-```
-If you would like to see your "least favorite" artists (or at least the ones who appear the least in your playlist), change the `ascending` argument to `TRUE`.
-
-```{r}
-favorite_artists(rb, ascending=TRUE)
-```
-
-If you want to see more of your favorite artists, use the `count=` argument
-
-```{r}
-favorite_artists(rb, count=10)
-```
-
-To just return the whole dataframe, set the `see_all` argument to `TRUE`.
-
-```{r}
-all_artists <- favorite_artists(rb, see_all=TRUE)
-
-all_artists
-```
-
