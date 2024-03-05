@@ -2,3 +2,15 @@ url: https://calv2n.github.io/spotilytics/
 template:
   bootstrap: 5
 
+reference:
+  - title: Spotilyitcs Functions
+    desc: >
+      You can use these functions to analyze Spotify data.
+  - subtitle: functions
+    contents:
+    - favorite_artists
+  - title: Sample Data
+    desc: >
+      Sample data of R&B music from the author's playlist.
+    contents:
+    - rb
